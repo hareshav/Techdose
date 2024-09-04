@@ -1,32 +1,30 @@
-#include <bits/stdc++.h>
+
+#include <iostream>
+#include <vector>
 using namespace std;
 
-int main() {
-    vector<int> elements = {2, 3, 4};
-    vector<vector<int>> subsets;
-    
-    int totalSubsets = 1 << elements.size();
-    
-    for (int i = 0; i < totalSubsets; ++i) {
+void sub(vector<int>& arr) {
+    int n = arr.size();
+    int cnt = 1 << n;
+
+    for (int i = 0; i < cnt; i++) {
         vector<int> subset;
-        for (int j = 0; j < elements.size(); ++j) {
+
+        for (int j = 0; j < n; j++) {
             if (i & (1 << j)) {
-                subset.push_back(elements[j]);
+                subset.push_back(arr[j]);
             }
         }
-        subsets.push_back(subset);
-    }
-
-    cout << '[';
-    for (size_t i = 0; i < subsets.size(); ++i) {
-        cout << '[';
-        for (size_t j = 0; j < subsets[i].size(); ++j) {
-            if (j > 0) cout << ',';
-            cout << subsets[i][j];
+        cout << "{ ";
+        for (int num : subset) {
+            cout << num << " ";
         }
-        cout << ']';
+        cout << "}" << endl;
     }
-    cout << ']' << endl;
+}
 
+int main() {
+    vector<int> arr = {1, 2, 3};
+    sub(arr);
     return 0;
 }
